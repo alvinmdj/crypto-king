@@ -4,13 +4,17 @@ React         : https://reactjs.org/
 Material UI   : https://v4.mui.com/
 React Router  : https://reactrouter.com/docs/en/v6
 Carousel      : https://www.npmjs.com/package/react-alice-carousel
+Color Palette : https://colorhunt.co/palette/ffe162ff646491c483eeeeee
 
 # Create React App
 npx create-react-app crypto-king
 
+# Run Development
+npm start
+
 # Dependencies
 Install Material UI v4 & Material UI Lab:
-npm install @material-ui/core @mui/lab 
+npm install @material-ui/core @material-ui/lab
 
 Install React Router v6:
 npm install react-router-dom@6

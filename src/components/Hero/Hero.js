@@ -3,10 +3,9 @@ import Carousel from "./Carousel"
 
 const useStyles = makeStyles(() => ({
   hero: {
-    // backgroundImage: 'url(./hero.webp)'
-    backgroundImage: 'url(./banner2.jpg)'
+    backgroundImage: 'url(./hero.webp)'
   },
-  bannerContent: {
+  heroContent: {
     height: 400,
     display: 'flex',
     flexDirection: 'column',
@@ -19,7 +18,12 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "center",
     textAlign: "center"
-  }
+  },
+  carousel: {
+    height: "50%",
+    display: "flex",
+    alignItems: "center",
+  },
 }))
 
 const Hero = () => {
@@ -31,12 +35,13 @@ const Hero = () => {
         <div className={classes.tagline}>
           <Typography
             variant="h2"
-            style={{ 
+            style={{
+              textTransform: 'uppercase',
               fontWeight: 'bold',
               marginBottom: 15,
               fontFamily: "Open Sans"
             }}>
-            CRYPTO KING
+            Crypto King
           </Typography>
           <Typography
             variant="subtitle2"

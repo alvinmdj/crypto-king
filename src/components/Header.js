@@ -15,7 +15,7 @@ import { CryptoState } from '../contexts/CryptoContext';
 const useStyles = makeStyles(() => ({
   title: {
     flex: 1,
-    color: "gold",
+    color: "#FFE162",
     fontFamily:"Open Sans",
     fontWeight: "bold",
     cursor: "pointer"
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: '#FFF',
+      main: '#EEEEEE',
     },
     type: 'dark',
   },

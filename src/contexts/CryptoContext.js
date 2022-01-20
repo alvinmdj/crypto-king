@@ -7,8 +7,8 @@ export const CryptoState = () => {
 }
 
 const CryptoContext = ({ children }) => {
-  const [currency, setCurrency] = useState("IDR");
-  const [symbol, setSymbol] = useState("Rp");
+  const [currency, setCurrency] = useState("USD");
+  const [symbol, setSymbol] = useState("$");
 
   useEffect(() => {
     if (currency === "IDR") setSymbol("Rp")

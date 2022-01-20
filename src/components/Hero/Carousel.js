@@ -6,6 +6,7 @@ import { TrendingCoins } from "../../configs/api"
 import { CryptoState } from "../../contexts/CryptoContext"
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from "react-alice-carousel"
+import { formatCurrency } from '../../configs/utils'
 
 const useStyles = makeStyles(() => ({
   carousel: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     cursor: "pointer",
     textTransform: "uppercase",
-    color: "#FFF"
+    color: "#EEEEEE"
   }
 }))
 
@@ -30,13 +31,8 @@ const Carousel = () => {
 
   const { currency, symbol } = CryptoState()
 
-  const formatCurrency = (nominal) => {
-    return nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  }
-
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency))
-
     setTrending(data)
   }
 
@@ -46,11 +42,12 @@ const Carousel = () => {
 
   const responsiveCarousel = {
     0: { items: 2 },
-    512: { items: 4 }
+    512: { items: 3 },
+    1024: { items: 4 }
   }
 
   const carouselItems = trending.map((coin) => {
-    let rise = coin.price_change_percentage_24h >= 0
+    let rise = coin.price_change_percentage_24h > 0
 
     return (
       <Link 
@@ -67,7 +64,7 @@ const Carousel = () => {
           &nbsp;
           <span
             style={{ 
-              color: rise > 0 ? "green" : "red",
+              color: rise > 0 ? "#91C483" : "#FF6464",
               fontWeight: 500
             }}>
             {rise && "+"}{coin?.price_change_percentage_24h?.toFixed(2)}%
