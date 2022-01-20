@@ -1,0 +1,14 @@
+# Official Documentations
+React       : https://reactjs.org/
+Material UI : https://mui.com/
+React Router: https://reactrouter.com/docs/en/v6
+
+# Create React App
+npx create-react-app crypto-king
+
+# Dependencies
+Install Material UI v5 & Material UI Lab:
+npm install @mui/material @emotion/react @emotion/styled @mui/lab
+
+Install React Router v6:
+npm install react-router-dom@6
