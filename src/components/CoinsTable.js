@@ -60,7 +60,6 @@ const CoinsTable = () => {
     setLoading(false)
   }
 
-  console.log(coins)
   useEffect(() => {
     fetchCoins()
   }, [currency])

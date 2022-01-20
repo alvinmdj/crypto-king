@@ -3,8 +3,10 @@ Coin Gecko API: https://www.coingecko.com/en/api/documentation
 React         : https://reactjs.org/
 Material UI   : https://v4.mui.com/
 React Router  : https://reactrouter.com/docs/en/v6
+Axios         : https://axios-http.com/
 Carousel      : https://www.npmjs.com/package/react-alice-carousel
 Color Palette : https://colorhunt.co/palette/ffe162ff646491c483eeeeee
+HTML Parser   : https://www.npmjs.com/package/html-react-parser
 
 # Create React App
 npx create-react-app crypto-king
@@ -24,6 +26,9 @@ npm i axios
 
 Install React Alice Carousel:
 npm i react-alice-carousel
+
+Install HTML React Parser:
+npm i html-react-parser
 
 Google Fonts:
 https://fonts.google.com/specimen/Open+Sans?category=Sans+Serif#standard-styles
