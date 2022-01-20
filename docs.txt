@@ -1,14 +1,25 @@
 # Official Documentations
-React       : https://reactjs.org/
-Material UI : https://mui.com/
-React Router: https://reactrouter.com/docs/en/v6
+Coin Gecko API: https://www.coingecko.com/en/api/documentation
+React         : https://reactjs.org/
+Material UI   : https://v4.mui.com/
+React Router  : https://reactrouter.com/docs/en/v6
+Carousel      : https://www.npmjs.com/package/react-alice-carousel
 
 # Create React App
 npx create-react-app crypto-king
 
 # Dependencies
-Install Material UI v5 & Material UI Lab:
-npm install @mui/material @emotion/react @emotion/styled @mui/lab
+Install Material UI v4 & Material UI Lab:
+npm install @material-ui/core @mui/lab 
 
 Install React Router v6:
 npm install react-router-dom@6
+
+Install Axios:
+npm i axios
+
+Install React Alice Carousel:
+npm i react-alice-carousel
+
+Google Fonts:
+https://fonts.google.com/specimen/Open+Sans?category=Sans+Serif#standard-styles
