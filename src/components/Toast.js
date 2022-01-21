@@ -14,10 +14,9 @@ const Toast = () => {
   }
 
   return (
-    <Snackbar open={alert.open} autoHideDuration={5000} onClose={handleClose}>
+    <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
       <Alert
         onClose={handleClose}
-        elevation={10}
         variant='filled'
         severity={alert.type}
       >

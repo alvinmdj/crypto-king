@@ -72,7 +72,11 @@ const CoinsTable = () => {
           onChange={(e) => setSearch(e.target.value)}
           label="What are you looking for?" 
           variant="outlined"
-          style={{ marginBottom: 20, width: '100%' }} />       
+          style={{
+            marginBottom: 20,
+            width: '100%'
+          }}
+        />
         {loading ? 
           <LoadingSkeleton /> : 
           <CoinsTableContainer
@@ -104,7 +108,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
 
   return (
     <>
-      <TableContainer>
+      <TableContainer style={{ borderRadius: 5 }}>
         <Table>
           <TableHead style={{ backgroundColor: "#FFE162" }}>
             <TableRow>

@@ -8,6 +8,7 @@ Axios         : https://axios-http.com/
 Carousel      : https://www.npmjs.com/package/react-alice-carousel
 HTML Parser   : https://www.npmjs.com/package/html-react-parser
 React Chart   : https://react-chartjs-2.netlify.app/
+Google Button : https://www.npmjs.com/package/react-google-button
 
 # Color Palette
 https://colorhunt.co/palette/ffe162ff646491c483eeeeee
@@ -37,6 +38,9 @@ npm i html-react-parser
 
 Install React Chart js 2:
 npm install --save chart.js react-chartjs-2
+
+Install React Google Button:
+npm install --save react-google-button
 
 # Firebase
 

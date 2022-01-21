@@ -2,6 +2,7 @@ import { Box, Button, TextField } from "@material-ui/core"
 import { useState } from "react"
 import { CryptoState } from '../../contexts/CryptoContext'
 import { auth } from '../../utils/firebase'
+import { authErrorMessage } from "../../utils/errorHandler"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 
 const SignUp = ({ handleClose }) => {
@@ -12,7 +13,18 @@ const SignUp = ({ handleClose }) => {
   const { setAlert } = CryptoState()
 
   const handleSubmit = async () => {
+    if (!email || !password || !confirmPassword) {
+      setAlert({
+        open: true,
+        message: "Please fill all the fields.",
+        type: 'error'
+      })
+      return
+    }
+
     if (password !== confirmPassword) {
+      setPassword('')
+      setConfirmPassword('')
       setAlert({
         open: true,
         message: "Password do not match!",
@@ -33,9 +45,13 @@ const SignUp = ({ handleClose }) => {
       handleClose()
 
     } catch(err) {
+      setEmail('')
+      setPassword('')
+      setConfirmPassword('')
+      const message = authErrorMessage(err)
       setAlert({
         open: true,
-        message: err.message,
+        message,
         type: 'error'
       })
       return
