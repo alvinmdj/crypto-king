@@ -10,9 +10,8 @@ import { formatCurrency } from '../../configs/utils'
 
 const useStyles = makeStyles(() => ({
   carousel: {
-    height: '50%',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   carouselItem: {
     fontWeight: '600',

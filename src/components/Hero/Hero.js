@@ -6,10 +6,10 @@ const useStyles = makeStyles(() => ({
     backgroundImage: 'url(./hero.webp)'
   },
   heroContent: {
-    height: 450,
+    height: 550,
+    paddingTop: 80,
     display: 'flex',
     flexDirection: 'column',
-    paddingTop: 25,
     justifyContent: 'space-around'
   },
   tagline: {
@@ -40,7 +40,7 @@ const Hero = () => {
               marginBottom: 15,
               fontFamily: "Open Sans"
             }}>
-            Crypto King
+            king of cryptos
           </Typography>
           <Typography
             variant="subtitle2"
@@ -50,7 +50,7 @@ const Hero = () => {
               fontFamily: "Open Sans",
               fontWeight: 'bold'
             }}>
-            View top cryptocurrency prices, crypto market cap, and crypto charts.
+            View top cryptocurrency prices, crypto market cap, and crypto charts
           </Typography>
         </div>
         <Carousel />

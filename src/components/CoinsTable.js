@@ -34,9 +34,8 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#041C32",
     cursor: 'pointer',
     "&:hover": {
-      backgroundColor: '#072227'
-    },
-    fontFamily: "Open Sans"
+      backgroundColor: '#1A374D'
+    }
   },
   pagination: {
     "& .MuiPaginationItem-root": {
@@ -73,7 +72,7 @@ const CoinsTable = () => {
       <Container style={{ textAlign: 'center' }}>
         <Typography
           variant='h4'
-          style={{ marginTop: 20, marginBottom: 20, fontFamily: 'Open Sans' }}
+          style={{ marginTop: 20, marginBottom: 20, fontFamily: 'Open Sans', fontWeight: 'bold' }}
         >
           Top 100 Cryptocurrencies by Market Cap
         </Typography>
@@ -145,14 +144,15 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
                     className={classes.row}
                     key={row.name}
                   >
-                    <TableCell 
+                    <TableCell
+                      style={{ fontFamily: "Open Sans", fontWeight: "700" }}
                       component='th'
                       scope='row'
                       align='right'
                     >
                       {row.market_cap_rank}
                     </TableCell>
-                    <TableCell 
+                    <TableCell
                       component='th'
                       scope='row'
                       style={{ 
@@ -174,7 +174,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
                         >
                           {row.symbol} 
                         </span>
-                        <span style={{ color: "darkgrey" }}>{row.name}</span>
+                        <span style={{ fontFamily: "Open Sans", color: "darkgrey" }}>{row.name}</span>
                       </div>
                     </TableCell>
                     <TableCell align='right'>
@@ -185,7 +185,8 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
                       align='right'
                       style={{ 
                         color: rise > 0 ? "#91C483" : "#FF6464",
-                        fontWeight: 500
+                        fontFamily: "Open Sans", 
+                        fontWeight: 700
                       }}
                     >
                       {rise && "+"}
@@ -209,10 +210,10 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
           window.scroll(0, 450)
         }}
         style={{ 
-          padding: 20,
           width: '100%',
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          padding: 20
         }}
         classes={{ ul: classes.pagination }}
       />

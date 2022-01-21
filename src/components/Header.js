@@ -7,18 +7,29 @@ import {
   Toolbar,
   Typography,
   makeStyles, 
-  ThemeProvider
+  ThemeProvider,
 } from '@material-ui/core';
+import transitions from '@material-ui/core/styles/transitions';
 import { useNavigate } from 'react-router-dom';
 import { CryptoState } from '../contexts/CryptoContext';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    backgroundColor: '#04293A'
+  },
   title: {
-    flex: 1,
+    flexGrow: 1,
     color: "#FFE162",
     fontFamily:"Open Sans",
     fontWeight: "bold",
-    cursor: "pointer"
+    cursor: "pointer",
+    "&:hover": {
+      color: 'gold'
+    }
+  },
+  currencyItem: {
+    fontFamily: "Open Sans",
+    fontWeight: 'bold'
   }
 }))
 
@@ -40,27 +51,28 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color='transparent' position='static'>
+      <AppBar className={classes.root}>
         <Container>
           <Toolbar>
-            <Typography 
+            <Typography
               onClick={() => navigate('/')}
               className={classes.title}
               variant='h6'>
               Crypto King
             </Typography>
-            
             <Select 
               variant='outlined'
-              style={{ 
-                width: 100,
+              style={{
+                width: 90,
                 height: 40,
+                fontFamily: 'Open Sans',
+                fontWeight: 'bold'
               }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
-              <MenuItem value={"USD"}>USD</MenuItem>
-              <MenuItem value={"IDR"}>IDR</MenuItem>
+              <MenuItem className={classes.currencyItem} value={"USD"}>USD</MenuItem>
+              <MenuItem className={classes.currencyItem} value={"IDR"}>IDR</MenuItem>
             </Select>
           </Toolbar>
         </Container>
