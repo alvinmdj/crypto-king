@@ -6,18 +6,17 @@ const useStyles = makeStyles(() => ({
     backgroundImage: 'url(./hero.webp)'
   },
   heroContent: {
-    height: 550,
-    paddingTop: 80,
+    height: 450,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
   tagline: {
     display: "flex",
-    height: "40%",
+    height: "30%",
     flexDirection: "column",
     justifyContent: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   carousel: {
     display: "flex",

@@ -15,7 +15,7 @@ import { CryptoState } from '../contexts/CryptoContext';
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: '#04293A'
+    backgroundColor: '#04293A',
   },
   title: {
     flexGrow: 1,
@@ -51,7 +51,7 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar className={classes.root}>
+      <AppBar className={classes.root} position='sticky'>
         <Container>
           <Toolbar>
             <Typography
