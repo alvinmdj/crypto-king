@@ -1,7 +1,7 @@
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import { makeStyles } from "@material-ui/core"
+import { makeStyles, CircularProgress } from "@material-ui/core"
 import { TrendingCoins } from "../../configs/api"
 import { CryptoState } from "../../contexts/CryptoContext"
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -28,12 +28,19 @@ const Carousel = () => {
   const classes = useStyles()
   
   const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   const { currency, symbol } = CryptoState()
 
   const fetchTrendingCoins = async () => {
-    const { data } = await axios.get(TrendingCoins(currency))
-    setTrending(data)
+    try {
+      setLoading(true)
+      const { data } = await axios.get(TrendingCoins(currency))
+      setTrending(data)
+      setLoading(false)
+    } catch(err) {
+      console.log(err.message)
+    }
   }
 
   useEffect(() => {
@@ -66,7 +73,8 @@ const Carousel = () => {
             style={{ 
               color: rise > 0 ? "#91C483" : "#FF6464",
               fontWeight: 500
-            }}>
+            }}
+          >
             {rise && "+"}{coin?.price_change_percentage_24h?.toFixed(2)}%
           </span>
         </span>
@@ -80,6 +88,11 @@ const Carousel = () => {
 
   return (
     <div classes={classes.carousel}>
+    {loading ? (
+      <div className={classes.carouselItem}>
+        <CircularProgress color="inherit" />
+      </div> 
+    ) : (
       <AliceCarousel
         autoPlay
         disableDotsControls
@@ -89,7 +102,9 @@ const Carousel = () => {
         responsive={ responsiveCarousel }
         autoPlayInterval={ 1000 }
         animationDuration={ 1500 }
-        items={ carouselItems } />
+        items={ carouselItems } 
+      />
+    )}
     </div>
   )
 }

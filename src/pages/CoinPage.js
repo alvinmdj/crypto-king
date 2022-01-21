@@ -91,8 +91,11 @@ const CoinPage = () => {
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant='h2' className={classes.heading}>
-          {coin?.name}      
+        <Typography variant='h4' className={classes.heading}>
+          {coin?.name}
+        </Typography>
+        <Typography variant='h4' className={classes.heading}>
+          ({coin?.symbol.toUpperCase()})
         </Typography>
         <Typography variant='subtitle1' className={classes.description}>
           {parse(coin?.description.en.split('. ')[0].toString())}.

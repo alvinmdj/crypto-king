@@ -1,5 +1,6 @@
 # Official Documentations
 Coin Gecko API: https://www.coingecko.com/en/api/documentation
+Google Fonts  : https://fonts.google.com/
 React         : https://reactjs.org/
 Material UI   : https://v4.mui.com/
 React Router  : https://reactrouter.com/docs/en/v6
@@ -7,6 +8,7 @@ Axios         : https://axios-http.com/
 Carousel      : https://www.npmjs.com/package/react-alice-carousel
 Color Palette : https://colorhunt.co/palette/ffe162ff646491c483eeeeee
 HTML Parser   : https://www.npmjs.com/package/html-react-parser
+React Chart   : https://react-chartjs-2.netlify.app/
 
 # Create React App
 npx create-react-app crypto-king
@@ -30,5 +32,5 @@ npm i react-alice-carousel
 Install HTML React Parser:
 npm i html-react-parser
 
-Google Fonts:
-https://fonts.google.com/specimen/Open+Sans?category=Sans+Serif#standard-styles
+Install React Chart js 2:
+npm install --save chart.js react-chartjs-2

@@ -54,10 +54,14 @@ const CoinsTable = () => {
   const { currency, symbol } = CryptoState()
 
   const fetchCoins = async () => {
-    setLoading(true)
-    const { data } = await axios.get(CoinList(currency))
-    setCoins(data)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const { data } = await axios.get(CoinList(currency))
+      setCoins(data)
+      setLoading(false)
+    } catch(err) {
+      console.log(err.message)
+    }
   }
 
   useEffect(() => {
@@ -199,7 +203,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
         </Table>  
       </TableContainer>
       <Pagination 
-        count={(handleSearch()?.length / 10).toFixed(0)}
+        count={parseInt((handleSearch()?.length / 10).toFixed(0))}
         onChange={(_, value) => {
           setPage(value)
           window.scroll(0, 450)
