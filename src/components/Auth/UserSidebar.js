@@ -9,7 +9,6 @@ import { auth, db } from '../../utils/firebase'
 import { currencyFormatter } from '../../utils/currencyFormatter'
 import { MdDelete } from 'react-icons/md'
 import { doc, setDoc } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom'
 
 const darkTheme = createTheme({
   palette: {
@@ -80,11 +79,13 @@ const useStyles = makeStyles({
 export default function UserSidebar() {
   const classes = useStyles()
 
-  const navigate = useNavigate()
-
   const [state, setState] = React.useState({ right: false })
 
-  const { user, setAlert, coins, symbol, watchlist } = CryptoState()
+  const { user, setAlert, currency, coins, symbol, watchlist, fetchCoins } = CryptoState()
+
+  React.useEffect(() => {
+    fetchCoins()
+  }, [currency])
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -101,6 +102,8 @@ export default function UserSidebar() {
       type: 'success',
       message: 'You have been logged out.'
     })
+
+    toggleDrawer()
   }
 
   const removeFromWatchlist = async (coin) => {
@@ -170,7 +173,7 @@ export default function UserSidebar() {
                       Watchlist
                     </span>
                     {coins.map(coin => {
-                      if(watchlist.includes(coin.id)) {
+                      if(watchlist.length > 0 && watchlist.includes(coin.id)) {
                         return (
                           <div 
                             key={coin.id} 
@@ -189,7 +192,7 @@ export default function UserSidebar() {
                             </span>
                           </div>
                         )
-                      }
+                      } else return <></>
                     })}
                     {watchlist.length === 0 && <span>Watchlist still empty...</span>}
                   </div>
