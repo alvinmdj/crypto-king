@@ -6,9 +6,12 @@ Material UI   : https://v4.mui.com/
 React Router  : https://reactrouter.com/docs/en/v6
 Axios         : https://axios-http.com/
 Carousel      : https://www.npmjs.com/package/react-alice-carousel
-Color Palette : https://colorhunt.co/palette/ffe162ff646491c483eeeeee
 HTML Parser   : https://www.npmjs.com/package/html-react-parser
 React Chart   : https://react-chartjs-2.netlify.app/
+
+# Color Palette
+https://colorhunt.co/palette/ffe162ff646491c483eeeeee
+https://colorhunt.co/palette/041c3204293a064663ecb365
 
 # Create React App
 npx create-react-app crypto-king

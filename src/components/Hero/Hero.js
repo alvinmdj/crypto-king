@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     backgroundImage: 'url(./hero.webp)'
   },
   heroContent: {
-    height: 400,
+    height: 450,
     display: 'flex',
     flexDirection: 'column',
     paddingTop: 25,
@@ -20,7 +20,6 @@ const useStyles = makeStyles(() => ({
     textAlign: "center"
   },
   carousel: {
-    height: "50%",
     display: "flex",
     alignItems: "center",
   },
@@ -48,7 +47,8 @@ const Hero = () => {
             style={{ 
               color: "darkgrey",
               textTransform: "capitalize",
-              fontFamily: "Open Sans"
+              fontFamily: "Open Sans",
+              fontWeight: 'bold'
             }}>
             View top cryptocurrency prices, crypto market cap, and crypto charts.
           </Typography>

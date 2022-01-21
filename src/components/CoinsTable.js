@@ -31,10 +31,10 @@ const darkTheme = createTheme({
 
 const useStyles = makeStyles(() => ({
   row: {
-    backgroundColor: "#191919",
+    backgroundColor: "#041C32",
     cursor: 'pointer',
     "&:hover": {
-      backgroundColor: '#121212'
+      backgroundColor: '#072227'
     },
     fontFamily: "Open Sans"
   },

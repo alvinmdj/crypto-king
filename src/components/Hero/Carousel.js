@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center'
   },
   carouselItem: {
+    fontWeight: '600',
     display: 'flex',
     flexDirection: 'column',
     alignItems: "center",
@@ -72,14 +73,12 @@ const Carousel = () => {
           <span
             style={{ 
               color: rise > 0 ? "#91C483" : "#FF6464",
-              fontWeight: 500
             }}
           >
             {rise && "+"}{coin?.price_change_percentage_24h?.toFixed(2)}%
           </span>
         </span>
-
-        <span style={{ fontSize: 22, fontWeight: 500 }}>
+        <span style={{ fontSize: 20, fontWeight: 500 }}>
           {symbol} {formatCurrency(coin?.current_price.toFixed(2))}
         </span>
       </Link>
