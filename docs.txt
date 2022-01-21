@@ -9,6 +9,7 @@ Carousel      : https://www.npmjs.com/package/react-alice-carousel
 HTML Parser   : https://www.npmjs.com/package/html-react-parser
 React Chart   : https://react-chartjs-2.netlify.app/
 Google Button : https://www.npmjs.com/package/react-google-button
+React Icons   : https://react-icons.github.io/react-icons
 
 # Color Palette
 https://colorhunt.co/palette/ffe162ff646491c483eeeeee
@@ -42,6 +43,13 @@ npm install --save chart.js react-chartjs-2
 Install React Google Button:
 npm install --save react-google-button
 
+Install React Icons:
+npm i react-icons
+
 # Firebase
 
 Installation: npm install firebase
+
+Documentations:
+DB Rules - https://firebase.google.com/docs/reference/security/database
+Request - https://firebase.google.com/docs/reference/rules/rules.firestore.Request

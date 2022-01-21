@@ -4,9 +4,11 @@ import { CryptoState } from '../contexts/CryptoContext'
 import { SingleCoin } from '../configs/api'
 import axios from 'axios'
 import parse from 'html-react-parser'
-import { LinearProgress, makeStyles, Typography } from '@material-ui/core'
+import { Button, LinearProgress, makeStyles, Typography } from '@material-ui/core'
 import CoinInfo from '../components/CoinInfo'
 import { currencyFormatter } from '../utils/currencyFormatter'
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from '../utils/firebase'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     fontFamily: 'Open Sans',
     marginBottom: 20,
-    paddingLeft: 20,
-    paddingRight: 20
   },
   description: {
     width: '100%',
@@ -44,12 +44,14 @@ const useStyles = makeStyles((theme) => ({
   },
   details: {
     alignSelf: 'start',
+    paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 10,
     width: '100%',
     [theme.breakpoints.down('md')]: {
       display: 'flex',
-      justifyContent: 'space-around'
+      flexDirection: 'column',
+      alignItems: 'center'
     },
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
@@ -68,7 +70,7 @@ const CoinPage = () => {
 
   const [coin, setCoin] = useState()
 
-  const { currency, symbol } = CryptoState()
+  const { currency, symbol, setAlert, user, watchlist } = CryptoState()
 
   const fetchCoinDetail = async () => {
     const { data } = await axios.get(SingleCoin(id))
@@ -78,6 +80,54 @@ const CoinPage = () => {
   useEffect(() => {
     fetchCoinDetail()
   }, [currency])
+
+  const inWatchlist = watchlist.includes(coin?.id)
+
+  const addToWatchlist = async () => {
+    const coinRef = doc(db, 'watchlist', user.uid)
+
+    try {
+      await setDoc(coinRef, {
+        coins: watchlist ? [...watchlist, coin?.id] : [coin?.id]
+      })
+
+      setAlert({
+        open: true,
+        message: `${coin?.name} has been added to your watchlist!`,
+        type: 'success'
+      })
+    } catch(err) {
+      setAlert({
+        open: true,
+        message: err.message,
+        type: 'error'
+      })
+    }
+  }
+
+  const removeFromWatchlist = async () => {
+    const coinRef = doc(db, 'watchlist', user.uid)
+
+    try {
+      await setDoc(
+        coinRef, 
+        { coins: watchlist.filter(watch => watch !== coin?.id) }, 
+        { merge: 'true' }
+      )
+
+      setAlert({
+        open: true,
+        message: `${coin?.name} has been removed from your watchlist!`,
+        type: 'info'
+      })
+    } catch(err) {
+      setAlert({
+        open: true,
+        message: err.message,
+        type: 'error'
+      })
+    }
+  }
   
   if (!coin) return <LinearProgress style={{ backgroundColor: '#FFE162' }} />
 
@@ -102,25 +152,38 @@ const CoinPage = () => {
         </Typography>
         <div className={classes.details}>
           <span style={{ display: 'flex' }}>
-            <Typography variant='h5' className={classes.heading}>Rank:</Typography>
+            <Typography variant='h5' style={{ paddingRight: 10 }} className={classes.heading}>Rank:</Typography>
             <Typography variant='h5' style={{ fontFamily: "Open Sans" }}>
               {coin?.market_cap_rank}
             </Typography>
           </span>
           <span style={{ display: 'flex' }}>
-            <Typography variant='h5' className={classes.heading}>Current Price:</Typography>
+            <Typography variant='h5' style={{ paddingRight: 10 }} className={classes.heading}>Current Price:</Typography>
             <Typography variant='h5' style={{ fontFamily: "Open Sans" }}>
               {symbol}
               {currencyFormatter(coin?.market_data.current_price[currency.toLowerCase()])}
             </Typography>
           </span>
           <span style={{ display: 'flex' }}>
-            <Typography variant='h5' className={classes.heading}>Market Cap:</Typography>
+            <Typography variant='h5' style={{ paddingRight: 10 }} className={classes.heading}>Market Cap:</Typography>
             <Typography variant='h5' style={{ fontFamily: "Open Sans" }}>
             {symbol}
              {currencyFormatter(coin?.market_data.market_cap[currency.toLowerCase()])}
             </Typography>
           </span>
+          {user && <Button
+            onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+            variant='outlined'
+            style={{ 
+              width: '100%',
+              height: 40,
+              backgroundColor: inWatchlist ? '#FF6464' : '#91C483',
+              fontWeight: 'bold',
+              marginBottom: 20,
+            }}
+          >
+            {inWatchlist ? '− Remove from watchlist' : '+ Add to Watchlist'}
+          </Button>}
         </div>
       </div>
 

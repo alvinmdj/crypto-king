@@ -1,8 +1,9 @@
 import axios from "axios"
 import { useState, useEffect, useContext, createContext } from "react"
 import { CoinList, TrendingCoins } from "../configs/api"
-import { auth } from "../utils/firebase"
+import { auth, db } from "../utils/firebase"
 import { onAuthStateChanged } from "firebase/auth"
+import { doc, onSnapshot } from "firebase/firestore"
 
 const Crypto = createContext()
 
@@ -31,6 +32,24 @@ const CryptoContext = ({ children }) => {
 
   // User state
   const [user, setUser] = useState(null)
+
+  // Watchlist state
+  const [watchlist, setWatchlist] = useState([])
+
+  useEffect(() => {
+    if(user) {
+      const coinRef = doc(db, 'watchlist', user.uid)
+
+      const unsubscribe = onSnapshot(coinRef, userWatchlist => {
+        if(userWatchlist.exists()) {
+          console.log(userWatchlist.data().coins)
+          setWatchlist(userWatchlist.data().coins)
+        }
+      })
+
+      return () => unsubscribe()
+    }
+  }, [user])
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -80,7 +99,8 @@ const CryptoContext = ({ children }) => {
       fetchTrendingCoins,
       alert,
       setAlert,
-      user }}
+      user,
+      watchlist }}
     >
       { children }
     </Crypto.Provider>
