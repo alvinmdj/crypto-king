@@ -12,13 +12,11 @@ import {
   ThemeProvider, 
   Typography 
 } from '@material-ui/core'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Pagination, Skeleton } from '@material-ui/lab'
-import { CoinList } from '../configs/api'
 import { CryptoState } from '../contexts/CryptoContext'
 import { useNavigate } from 'react-router-dom'
-import { formatCurrency } from '../configs/utils'
+import { currencyFormatter } from '../utils/currencyFormatter'
 
 const darkTheme = createTheme({
   palette: {
@@ -45,23 +43,16 @@ const useStyles = makeStyles(() => ({
 }))
 
 const CoinsTable = () => {
-  const [coins, setCoins] = useState([])
-  const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
   
-  const { currency, symbol } = CryptoState()
-
-  const fetchCoins = async () => {
-    try {
-      setLoading(true)
-      const { data } = await axios.get(CoinList(currency))
-      setCoins(data)
-      setLoading(false)
-    } catch(err) {
-      console.log(err.message)
-    }
-  }
+  const { 
+    currency, 
+    symbol, 
+    coins, 
+    loading,
+    fetchCoins
+  } = CryptoState()
 
   useEffect(() => {
     fetchCoins()
@@ -179,7 +170,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
                     </TableCell>
                     <TableCell align='right'>
                       {symbol}
-                      {formatCurrency(row.current_price.toFixed(2))}
+                      {currencyFormatter(row.current_price.toFixed(2))}
                     </TableCell>
                     <TableCell 
                       align='right'
@@ -194,7 +185,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
                     </TableCell>
                     <TableCell align='right'>
                       {symbol}
-                      {formatCurrency(row.market_cap.toString())}
+                      {currencyFormatter(row.market_cap.toString())}
                     </TableCell>
                   </TableRow>
                 )

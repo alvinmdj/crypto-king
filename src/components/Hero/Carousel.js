@@ -1,12 +1,10 @@
-import axios from "axios"
 import { Link } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { makeStyles, CircularProgress } from "@material-ui/core"
-import { TrendingCoins } from "../../configs/api"
 import { CryptoState } from "../../contexts/CryptoContext"
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from "react-alice-carousel"
-import { formatCurrency } from '../../configs/utils'
+import { currencyFormatter } from '../../utils/currencyFormatter'
 
 const useStyles = makeStyles(() => ({
   carousel: {
@@ -26,22 +24,14 @@ const useStyles = makeStyles(() => ({
 
 const Carousel = () => {
   const classes = useStyles()
-  
-  const [trending, setTrending] = useState([]);
-  const [loading, setLoading] = useState(false)
 
-  const { currency, symbol } = CryptoState()
-
-  const fetchTrendingCoins = async () => {
-    try {
-      setLoading(true)
-      const { data } = await axios.get(TrendingCoins(currency))
-      setTrending(data)
-      setLoading(false)
-    } catch(err) {
-      console.log(err.message)
-    }
-  }
+  const { 
+    currency, 
+    symbol, 
+    loading, 
+    trending, 
+    fetchTrendingCoins 
+  } = CryptoState()
 
   useEffect(() => {
     fetchTrendingCoins()
@@ -78,7 +68,7 @@ const Carousel = () => {
           </span>
         </span>
         <span style={{ fontSize: 20, fontWeight: 500 }}>
-          {symbol} {formatCurrency(coin?.current_price.toFixed(2))}
+          {symbol} {currencyFormatter(coin?.current_price.toFixed(2))}
         </span>
       </Link>
     )

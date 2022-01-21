@@ -12,6 +12,7 @@ import {
 import transitions from '@material-ui/core/styles/transitions';
 import { useNavigate } from 'react-router-dom';
 import { CryptoState } from '../contexts/CryptoContext';
+import AuthModal from './Auth/AuthModal';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -74,6 +75,7 @@ const Header = () => {
               <MenuItem className={classes.currencyItem} value={"USD"}>USD</MenuItem>
               <MenuItem className={classes.currencyItem} value={"IDR"}>IDR</MenuItem>
             </Select>
+            <AuthModal />
           </Toolbar>
         </Container>
       </AppBar>

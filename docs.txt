@@ -37,3 +37,7 @@ npm i html-react-parser
 
 Install React Chart js 2:
 npm install --save chart.js react-chartjs-2
+
+# Firebase
+
+Installation: npm install firebase

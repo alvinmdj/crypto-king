@@ -6,7 +6,7 @@ import axios from 'axios'
 import parse from 'html-react-parser'
 import { LinearProgress, makeStyles, Typography } from '@material-ui/core'
 import CoinInfo from '../components/CoinInfo'
-import { formatCurrency } from '../configs/utils'
+import { currencyFormatter } from '../utils/currencyFormatter'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -111,14 +111,14 @@ const CoinPage = () => {
             <Typography variant='h5' className={classes.heading}>Current Price:</Typography>
             <Typography variant='h5' style={{ fontFamily: "Open Sans" }}>
               {symbol}
-              {formatCurrency(coin?.market_data.current_price[currency.toLowerCase()])}
+              {currencyFormatter(coin?.market_data.current_price[currency.toLowerCase()])}
             </Typography>
           </span>
           <span style={{ display: 'flex' }}>
             <Typography variant='h5' className={classes.heading}>Market Cap:</Typography>
             <Typography variant='h5' style={{ fontFamily: "Open Sans" }}>
             {symbol}
-             {formatCurrency(coin?.market_data.market_cap[currency.toLowerCase()])}
+             {currencyFormatter(coin?.market_data.market_cap[currency.toLowerCase()])}
             </Typography>
           </span>
         </div>
