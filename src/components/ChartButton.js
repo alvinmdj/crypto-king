@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/styles"
-import { Classnames } from "react-alice-carousel"
 
 const ChartButton = ({ children, selected, onClick }) => {
   const useStyles = makeStyles(() => ({

@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@material-ui/core"
+import { Box, Button, TextField, Typography } from "@material-ui/core"
 import { useState } from "react"
 import { CryptoState } from '../../contexts/CryptoContext'
 import { auth } from '../../utils/firebase'
@@ -63,6 +63,12 @@ const SignUp = ({ handleClose }) => {
       p={3}
       style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
     >
+      <Typography
+        variant='subtitle1' 
+        style={{ textAlign: 'center', fontFamily: 'Open Sans', fontWeight: 'bold' }}
+      >
+        Sign up now and create your own watchlist!
+      </Typography>
       <TextField
         variant='outlined'
         type='email'

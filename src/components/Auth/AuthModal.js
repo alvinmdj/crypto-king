@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, AppBar, Button, Tab, Tabs } from '@material-ui/core'
+import { Box, AppBar, Button, Tab, Tabs, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
@@ -118,9 +118,10 @@ export default function AuthModal() {
 
             {value === 0 && <SignIn handleClose={handleClose} />}
             {value === 1 && <SignUp handleClose={handleClose} />}
+            
+            <Divider variant='middle' style={{ marginBottom: 25 }} />
 
             <Box className={classes.googleSection}>
-              <span>OR</span>
               <GoogleButton
                 onClick={signInWithGoogle}
                 style={{ 
