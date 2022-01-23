@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { CryptoState } from '../contexts/CryptoContext'
 import { SingleCoin } from '../configs/api'
@@ -68,13 +68,20 @@ const CoinPage = () => {
 
   const { id } = useParams()
 
+  const navigate = useNavigate()
+  
   const [coin, setCoin] = useState()
 
   const { currency, symbol, setAlert, user, watchlist } = CryptoState()
 
   const fetchCoinDetail = async () => {
-    const { data } = await axios.get(SingleCoin(id))
-    setCoin(data)
+    try {
+      const { data } = await axios.get(SingleCoin(id))
+      setCoin(data)
+    } catch(err) {
+      console.log(err.message)
+      return navigate('/')
+    }
   }
 
   useEffect(() => {
@@ -148,7 +155,7 @@ const CoinPage = () => {
           ({coin?.symbol.toUpperCase()})
         </Typography>
         <Typography variant='subtitle1' className={classes.description}>
-          {parse(coin?.description.en.split('. ')[0].toString())}.
+          {parse(coin?.description.en.split('. ')[0].toString())}
         </Typography>
         <div className={classes.details}>
           <span style={{ display: 'flex' }}>

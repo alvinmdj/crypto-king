@@ -36,13 +36,14 @@ const CryptoContext = ({ children }) => {
   // Watchlist state
   const [watchlist, setWatchlist] = useState([])
 
+  // Subscribe to user watchlist changes & unsubscribe after
   useEffect(() => {
     if(user) {
       const coinRef = doc(db, 'watchlist', user.uid)
 
       const unsubscribe = onSnapshot(coinRef, userWatchlist => {
         if(userWatchlist.exists()) {
-          console.log(userWatchlist.data().coins)
+          // console.log(userWatchlist.data().coins)
           setWatchlist(userWatchlist.data().coins)
         }
       })
@@ -51,6 +52,7 @@ const CryptoContext = ({ children }) => {
     }
   }, [user])
 
+  // Check user status (authenticated / not)
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) setUser(user)
@@ -58,6 +60,7 @@ const CryptoContext = ({ children }) => {
     })
   }, [])
 
+  // Check current currency
   useEffect(() => {
     if (currency === "IDR") setSymbol("Rp")
     else setSymbol("$")
