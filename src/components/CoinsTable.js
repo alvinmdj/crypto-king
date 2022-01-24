@@ -57,7 +57,7 @@ const CoinsTable = () => {
   useEffect(() => {
     fetchCoins()
   }, [currency])
-  
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: 'center' }}>
