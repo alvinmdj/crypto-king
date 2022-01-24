@@ -68,7 +68,6 @@ const CoinsTable = () => {
           Top 100 Cryptocurrencies by Market Cap
         </Typography>
         <TextField
-          autoFocus
           onChange={(e) => setSearch(e.target.value)}
           label="What are you looking for?" 
           variant="outlined"
@@ -179,7 +178,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
                     <TableCell 
                       align='right'
                       style={{ 
-                        color: rise > 0 ? "#91C483" : "#FF6464",
+                        color: rise ? "#91C483" : "#FF6464",
                         fontFamily: "Open Sans", 
                         fontWeight: 700
                       }}
