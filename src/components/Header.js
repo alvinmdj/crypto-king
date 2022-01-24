@@ -8,11 +8,11 @@ import {
   Typography,
   makeStyles, 
   ThemeProvider,
-} from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
-import { CryptoState } from '../contexts/CryptoContext';
-import AuthModal from './Auth/AuthModal';
-import UserSidebar from './Auth/UserSidebar';
+} from '@material-ui/core'
+import { useNavigate } from 'react-router-dom'
+import { CryptoState } from '../contexts/CryptoContext'
+import AuthModal from './Auth/AuthModal'
+import UserSidebar from './Auth/UserSidebar'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -50,6 +50,11 @@ const Header = () => {
 
   const { currency, setCurrency, user } = CryptoState()
 
+  const handleCurrencyChange = (e) => {
+    localStorage.setItem('currency', e.target.value)
+    setCurrency(e.target.value)
+  }
+
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar className={classes.root} position='sticky'>
@@ -70,7 +75,8 @@ const Header = () => {
                 fontWeight: 'bold'
               }}
               value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
+              // onChange={(e) => setCurrency(e.target.value)}
+              onChange={handleCurrencyChange}
             >
               <MenuItem className={classes.currencyItem} value={"USD"}>USD</MenuItem>
               <MenuItem className={classes.currencyItem} value={"IDR"}>IDR</MenuItem>
@@ -81,6 +87,6 @@ const Header = () => {
       </AppBar>
     </ThemeProvider>
   )
-};
+}
 
 export default Header

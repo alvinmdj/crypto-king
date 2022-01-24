@@ -68,7 +68,7 @@ const Carousel = () => {
           </span>
         </span>
         <span style={{ fontSize: 20, fontWeight: 500 }}>
-          {symbol} {currencyFormatter(coin?.current_price.toFixed(2))}
+          {symbol}{currencyFormatter(coin?.current_price.toFixed(2))}
         </span>
       </Link>
     )

@@ -13,7 +13,7 @@ export const CryptoState = () => {
 
 const CryptoContext = ({ children }) => {
   // Currency & currency symbol state
-  const [currency, setCurrency] = useState("USD");
+  const [currency, setCurrency] = useState(localStorage.getItem('currency') || "USD");
   const [symbol, setSymbol] = useState("$");
 
   // All coin & trending coins state
@@ -60,10 +60,16 @@ const CryptoContext = ({ children }) => {
     })
   }, [])
 
-  // Check current currency
+  // Set symbol for different currency
   useEffect(() => {
-    if (currency === "IDR") setSymbol("Rp")
-    else setSymbol("$")
+    const currentCurrency = localStorage.getItem('currency')
+    if(currentCurrency) {
+      if (currentCurrency === "IDR") setSymbol("Rp")
+      else setSymbol("$")
+    } else {
+      if (currency === "IDR") setSymbol("Rp")
+      else setSymbol("$")
+    }
   }, [currency])
 
   // Get all coin (top 100)
