@@ -19,14 +19,13 @@ const useStyles = makeStyles(() => ({
   itemWrapper: {
     borderRadius: 10,
     backgroundColor: '#142F43',
-    maxWidth: 450,
+    maxWidth: 600,
     margin: 10,
     paddingTop: 15,
     paddingBottom: 20,
   },
   items: {
     cursor: 'pointer',
-    maxWidth: 350,
     backgroundColor: '#04293A',
     borderRadius: 10,
     paddingTop: 20,

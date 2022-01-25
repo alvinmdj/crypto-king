@@ -201,7 +201,7 @@ const CoinsTableContainer = ({ coins, search, symbol, page, setPage }) => {
         count={parseInt((handleSearch()?.length / 10).toFixed(0))}
         onChange={(_, value) => {
           setPage(value)
-          window.scroll(0, 450)
+          window.scroll(0, 1800)
         }}
         style={{ 
           width: '100%',
